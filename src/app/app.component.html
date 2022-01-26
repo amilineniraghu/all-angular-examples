@@ -1,4 +1,6 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <p-calendar id="date" formControlName="date"></p-calendar>
+    <button type="submit">Submit</button>
+  </form>
