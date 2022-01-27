@@ -1,0 +1,9 @@
+.child-border-class{
+  border:1px blue solid;
+  padding: 1vw;
+  font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: normal;
+  font-weight: 500;
+  background-color: azure;
+}
