@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {of} from 'rxjs';
-import {map} from 'rxjs/operators'
+import {first, map, takeUntil} from 'rxjs/operators'
 @Injectable({
   providedIn:"root"
 })
@@ -18,14 +18,16 @@ export class RxJsOperatorsService {
     /** Map operator */
     of(1,2,3)
     .pipe(
+      first(),
       map(v => {
         let c  = v+2;
         return c;
-      })
+      },
+      )
     ).subscribe(console.log);
 
     this.drawLine();
-    
+
   }
 
   drawLine(){
