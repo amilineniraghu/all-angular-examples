@@ -1,5 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { RxJsOperatorsService } from './services/rx-js-operators.service';
 
 
 @Component({
@@ -8,28 +9,16 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  implements OnInit{
-  name = 'Angular ' + VERSION.major;
-  public testForm:FormGroup;
-  constructor(private formbuilder: FormBuilder){
+
+
+  constructor(private _rxjsService: RxJsOperatorsService){
     
   }
 
 ngOnInit(): void {
-  this.createForm();
-}
+  
+  this._rxjsService.operators();
 
-createForm() {
-  this.testForm = this.formbuilder.group(
-    {
-      date : new FormControl('')
-    }
-  );   
-}
-
-
-
-onSubmit(){
-  console.info(this.testForm.value);
 }
 
 }
