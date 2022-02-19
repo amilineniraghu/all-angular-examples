@@ -11,15 +11,25 @@ export class RxJsOperatorsService {
   public operators(){
 
     /** Of operator */
-    // of(1,2,3).subscribe(console.log);
+    of(1,2,3).subscribe(console.log);
+
+    this.drawLine();
 
     /** Map operator */
     of(1,2,3)
     .pipe(
-      map((v) => v+v)
+      map(v => {
+        let c  = v+2;
+        return c;
+      })
     ).subscribe(console.log);
 
+    this.drawLine();
+    
   }
 
+  drawLine(){
+    console.log("---------------------------------------------");
+  }
 }
 
