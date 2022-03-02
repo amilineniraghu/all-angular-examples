@@ -1,5 +1,8 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { catchError, EMPTY, tap } from 'rxjs';
+import { HttpService } from './services/http.service';
+import { RxJsOperatorsService } from './services/rx-js-operators.service';
 
 
 @Component({
@@ -8,28 +11,24 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  implements OnInit{
-  name = 'Angular ' + VERSION.major;
-  public testForm:FormGroup;
-  constructor(private formbuilder: FormBuilder){
+
+  countriesObservable$ = this._httpService.countriesObservable$.pipe(
+    catchError( err => {
+      // this.errorMessage = err;
+      console.warn(err);
+      return EMPTY;
+    })
+  );
+
+  constructor(private _rxjsService: RxJsOperatorsService,
+    private _httpService: HttpService){
     
   }
 
 ngOnInit(): void {
-  this.createForm();
-}
+  
+  this._rxjsService.operators();
 
-createForm() {
-  this.testForm = this.formbuilder.group(
-    {
-      date : new FormControl('')
-    }
-  );   
-}
-
-
-
-onSubmit(){
-  console.info(this.testForm.value);
 }
 
 }
